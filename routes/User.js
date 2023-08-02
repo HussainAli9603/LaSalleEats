@@ -16,7 +16,7 @@ app.get('/', async (req, res) => {
     if (!username) {
       return res.redirect('/login'); // Replace '/login' with your actual login route
     }
-      let profile = await Profile.findOne({"username":req.session.username });
+      let profile = await Profile.findOne({username:req.session.username });
       let chicken = await Chicken.find({username:req.session.username });
       let store = await Store.find({username:req.session.username });
       let cheese = await Cheese.find({username:req.session.username });
@@ -41,6 +41,12 @@ app.get('/', async (req, res) => {
         }
        }
       }
+      var img;
+      if(rev.username == profile.username){
+         img = profile.image
+      }else{
+        img = rev.image
+      }
       var chickenData = {
         id:rev._id,
         content:rev.content,
@@ -49,7 +55,7 @@ app.get('/', async (req, res) => {
         username:rev.username,
         rating:rev.rating,
         title:rev.title,
-        image:rev.image,
+        image:img,
         star1:star1,
         emptyStar1:emptyStar1,
         reviewss:reviewData,
@@ -75,6 +81,12 @@ app.get('/', async (req, res) => {
         }
        }
       }
+      var img;
+      if(rev.username == profile.username){
+         img = profile.image
+      }else{
+        img = rev.image
+      }
       var storeData = {
         id:rev._id,
         content:rev.content,
@@ -83,7 +95,7 @@ app.get('/', async (req, res) => {
         username:rev.username,
         rating:rev.rating,
         title:rev.title,
-        image:rev.image,
+        image:img,
         star1:star1,
         emptyStar1:emptyStar1,
         reviewss:reviewData,
@@ -109,6 +121,12 @@ app.get('/', async (req, res) => {
         }
        }
       }
+       var img;
+      if(rev.username == profile.username){
+         img = profile.image
+      }else{
+        img = rev.image
+      }
       var cheeseData = {
         id:rev._id,
         content:rev.content,
@@ -117,7 +135,7 @@ app.get('/', async (req, res) => {
         username:rev.username,
         rating:rev.rating,
         title:rev.title,
-        image:rev.image,
+        image:img,
         star1:star1,
         emptyStar1:emptyStar1,
         reviewss:reviewData,
@@ -143,6 +161,12 @@ app.get('/', async (req, res) => {
         }
        }
       }
+       var img;
+      if(rev.username == profile.username){
+         img = profile.image
+      }else{
+        img = rev.image
+      }
       var cafeData = {
         id:rev._id,
         content:rev.content,
@@ -151,7 +175,7 @@ app.get('/', async (req, res) => {
         username:rev.username,
         rating:rev.rating,
         title:rev.title,
-        image:rev.image,
+        image:img,
         star1:star1,
         emptyStar1:emptyStar1,
         reviewss:reviewData,
@@ -271,7 +295,8 @@ app.post('/edit/user-review',async(req, res) => {
   let store = await Store.findOne({_id:req.body.commentId });
   let cheese = await Cheese.findOne({_id:req.body.commentId });
   let cafe = await Cafe.findOne({_id:req.body.commentId });
-
+  let profile = await Profile.findOne({username:req.session.username})
+ 
 
   if(chicken){ 
       if (req.files && req.files.image) {
@@ -292,6 +317,7 @@ app.post('/edit/user-review',async(req, res) => {
       }else{
         imagePath = req.body.oldImage
       }
+
       var data = {
         id:req.body.commentId,
         review : req.body.replay,
@@ -431,7 +457,7 @@ app.post('/like/:id', async (req, res) => {
       if(getChicken?.likes[0]?.user == username){
            res.redirect('/User');
       }else if (getChicken?.dislikes[0]?.user == username) {
-           res.redirect('/24Chicken');
+           res.redirect('/User');
       }else{
          var like = {
         user:username

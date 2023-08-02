@@ -570,7 +570,7 @@ app.post('/24login', async (req, res) => {
      const token = await user.generateAuthToken1();
      console.log(token);
     
-     res.header('token', token).render('24Chicken', {user: username});
+     res.header('token', token).redirect('24Chicken');
    } 
 
 });
@@ -603,7 +603,7 @@ app.post('/cheeselogin', async (req, res) => {
      const token = await user.generateAuthToken1();
      console.log(token);
     
-     res.header('token', token).render('EverythingButCheese', {user: username});
+     res.header('token', token).redirect('/EverythingButCheese');
    } 
 
 });
@@ -669,7 +669,7 @@ app.post('/cafelogin', async (req, res) => {
      const token = await user.generateAuthToken1();
      console.log(token);
     
-     res.header('token', token).render('ObscureCafe', {user: username});
+     res.header('token', token).redirect('/ObscureCafe');
    }
 
 });
@@ -736,7 +736,7 @@ app.post('/storelogin', async (req, res) => {
      const token = await user.generateAuthToken1();
      console.log(token);
     
-     res.header('token', token).render('store', {user: username});
+     res.header('token', token).redirect('/store');
    }
 
 });

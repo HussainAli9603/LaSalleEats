@@ -59,7 +59,7 @@ app.get('/', async(req, res) => {
             profile:profile });
     } 
     else {
-        res.render('EverythingButCheese',{data:pushData});
+        res.render('EverythingButCheese');
     }
 });
 
@@ -287,9 +287,6 @@ app.get('/search', async (req, res) => {
 
 app.get('/view/:id', async (req, res) => {
     let getCheese = await Cheese.findOne({_id:req.params.id});
-    if(getCheese.username != req.session.username){
-        res.redirect('/EverythingButCheese');     
-    }
   
     res.render('view1',{getCheese:getCheese});
 });

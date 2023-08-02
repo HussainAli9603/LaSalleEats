@@ -317,11 +317,11 @@
 
             <div class = "user_post">
                 
-                {{#if image}}
-                        <img src="/{{image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+            {{#if image}}
+                 <img src="/{{image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
                         </a>
             {{else}}
-            <img src="./images/defaulticon.png " class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+              <img src="/{{image1}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
             </a>
             {{/if}}
 				<div style = "margin-left: 10px ;">
@@ -377,7 +377,13 @@
              {{#each reviewss}}
 
               <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
-                <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50>
+                {{#if image}}
+                  <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50>
+                {{else}}
+                  <img class="rounded-circle shadow-1-strong me-3" src="/{{image1}}" width = 50 height = 50>
+
+                {{/if}}
+
                 <div style = "margin-left: 10px ;">
                   <a href = "user.html"><h6 style = "color: seagreen; font-size:16px; display:flex; margin-top:10px;">{{username}}</h6></a>
                         {{#if uploadImage}}

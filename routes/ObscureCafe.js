@@ -19,6 +19,7 @@ app.get('/', async(req, res) => {
       let star1 = [];
       let emptyStar1 = [];
       let reviewData = [];
+      let img;
 
       for (var i = 1; i <= rev.rating; i++ ) {
          star1.push(i)
@@ -33,6 +34,12 @@ app.get('/', async(req, res) => {
          }
        }
       }
+      for (var i = 0; i <= reviewData?.length; i++ ) {
+          if(reviewData[i]?.username == req.session.username){
+             img = profile?.image
+          }
+      }
+      console.log(img)
       
       var cafeData = {
         id:rev._id,
@@ -41,7 +48,8 @@ app.get('/', async(req, res) => {
         dislikes:rev.dislikes,
         username:rev.username,
         rating:rev.rating,
-        image:rev.image,
+        image1:rev.image,
+        image:img,
         title:rev.title,
         star1:star1,
         emptyStar1:emptyStar1,
@@ -60,7 +68,7 @@ app.get('/', async(req, res) => {
             profile:profile });
     } 
     else {
-        res.render('ObscureCafe',{data:pushData});
+        res.render('ObscureCafe');
     }
 });
 

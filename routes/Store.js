@@ -58,7 +58,7 @@ app.get('/', async (req, res) => {
         res.render('store', { user: req.session.username,data:pushData,profile:profile });
     } 
     else {
-        res.render('store',{data:pushData});
+        res.render('store');
     }
 });
 
@@ -297,7 +297,7 @@ app.get('/search', async (req, res) => {
 });
 
 
-app.get('/viewsStore/:review', async (req, res) => {
+app.get('/views-store/:review', async (req, res) => {
     let getStore = await Store.find({});
     if(getStore.username != req.session.username){
         res.redirect('/store');     

@@ -61,9 +61,7 @@ app.get('/', async (req, res) => {
              });
     } 
     else {
-        res.render('24chicken',{
-            data:pushData,
-        });
+        res.render('24chicken');
     }
 });
 
@@ -218,8 +216,9 @@ app.post('/dislike/:id', async (req, res) => {
 	}
 });
 
-app.get('/view/:id', async (req, res) => {
+app.get('/chicken-details/:id', async (req, res) => {
     let getChicken = await Chicken.findOne({_id:req.params.id});
+    console.log(getChicken)
     if(getChicken.username != req.session.username){
         res.redirect('/24chicken');     
     }
@@ -227,11 +226,9 @@ app.get('/view/:id', async (req, res) => {
 });
 
 
-app.get('/views/:review', async (req, res) => {
+app.get('/views-chicken/:review', async (req, res) => {
     let getChicken = await Chicken.find({});
-    if(getChicken.username != req.session.username){
-        res.redirect('/24chicken');     
-    }
+  
     getChickens = []
     for (var i = 0; i <= getChicken.length; i++){
     const exists = getChicken[i]?.reviews?.find(
