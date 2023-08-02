@@ -1,0 +1,139 @@
+   <script src = "loginscript.js"></script>
+    <!--FOR SIDE NAV-->
+  
+    <div class = "sideNav"id = "sideNav">
+        <div id = "loginHeader">
+            
+            <div id = "nav_Exit" onclick="closeNav()" style="font-weight: bold;" class = "fa fa-close">
+            </div>
+        </div><br>
+      
+            <center>
+        <div class="wrapper">
+            <form action ="/24login" method="post">
+                <div>
+                    <h2 style="font-size: 1.5em;"><br>Login</h2>
+                </div>
+                <div class = "exit"><box-icon type='solid' name='x-circle'></box-icon>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br><br>
+                
+                <!-- Log In Button-->
+                <div>
+                    <input type ="submit" value = "Log in">
+                </div><br>
+                
+                <!-- FORGOT PASSWORD-->
+                <div class = "form-link">
+                    <a href = "#" class = "link" id = "forgot_pass" style="color: black;">Forgot password</a>
+                </div><br>
+                
+
+                <!-- Register an Account -->
+                <span>
+                    Don't have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Sign up now </a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+      
+      </center>
+      
+      
+      
+      <center>
+        <div class="wrapper_reg">
+            <div class = "form_box_signup">
+                <form action ="/24signup" method="post">
+                <div>
+                    <h2 style="font-family: 'Lora', serif; font-size: 1.5em;"><br>Register</h2>
+                </div>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br>
+                <div class = "input_box">
+                    <label>Re-enter Password </label><br>
+                    <input type = "password" name = "re_password" placeholder="Re-enter Password">
+                    
+                </div><br>
+                
+                <!-- Sign Up Button-->
+                <div>
+                    <input type ="submit" value = "Sign up"><br>
+                </div><br>
+                
+
+                <!-- Already Have an Account -->
+                <span>
+                    Already have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Login</a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+        
+      
+      </center>
+      
+      </div>
+
+
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a href="Homepage">
+                    <img src = "images/logo.png" width = 50px height = 50px/>
+            </a>
+            <form action="" id="searchbar" style="margin-top: 15px; margin-left: 40px; border: #2F3B1C solid 2px;">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><img src="./images/searchicon.png"></button>
+            </form>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Homepage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restolist">Restaurants</a>
+                    </li>
+                    <li class="nav-item" onclick="openNav()">
+                        {{#if user}}
+                                <li clas="nav-item">
+							        <a class="nav-link" href="/24logout">Sign Out</a>
+						        </li>
+                                <a href="User">
+						            <img src="images/defaulticon.png" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+						        </a>
+                            {{else}}
+                                <p class="nav-link" href="" onclick="openNav()" style="cursor: pointer;">Login</p>
+                            {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

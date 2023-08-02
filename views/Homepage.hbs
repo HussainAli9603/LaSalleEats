@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> LaSalle Eats </title>
+    <link href="images/logo.png" rel="shortcut icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        /* general */
+
+        html, body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        /* navigation */
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #2F3B1C;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+        }
+
+        .loginregister {
+            color: #444444;
+        }
+
+        a:link, a:visited {
+            color: #444444;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #526534;
+            text-decoration: none;
+        }
+
+        .loginregister:hover {
+            color: #526534;
+        }
+
+        .navlinks {
+            word-spacing: 10px;
+            margin-right: 20px;
+            font-size:larger;
+            text-underline-offset: auto;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        /* header */
+
+        #header {
+            background-image: url(./images/dlsuphoto.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            box-shadow: inset 0 0 0 1000px rgba(237, 234, 229, 0.75);
+            display: flex;
+            justify-content: center;
+        }
+
+        .parallax {
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        #headercontent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 10%;
+            width: 90%;
+            height: 75%;
+            max-width: 800px;
+            max-height: 600px;
+            margin-right: 50px;
+            margin-top: 100px;
+        }
+
+        #websitedetails {
+            width: inherit;
+            height: inherit;
+            max-width: inherit;
+            max-height: inherit;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .description {
+            font-size: medium;
+            text-align: center;
+            text-justify: inter-word;
+            font-weight: normal;
+        }
+
+        #searchbar {
+            margin-top: auto;
+            width: 100%;
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            border-radius: 60px;
+            padding: 10px 20px;
+            backdrop-filter: blur(4px) saturate(180%);
+        }
+
+        #searchbar input {
+            background: transparent;
+            flex: 1;
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            color: #444444;
+        }
+
+        #searchbar button img{
+            width: 30px;
+            height: 30px;
+        }
+
+        #searchbar button {
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0);
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            backdrop-filter: blur(4px) saturate(180%);
+        }
+
+        ::placeholder {
+            color: #444444;
+        }
+
+        /* establishments */
+
+        #establishments {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #containers {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mostreviewed {
+            width: 30%;
+            height: 500px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 15px;
+        }
+
+        #restaurantphoto {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 50%;
+            width: 100%;
+            box-shadow: inset 0 0 0 1000px rgba(237, 234, 229, 0.5);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            overflow: hidden;
+            align-self: center;
+        }
+
+        #restaurantname {
+            padding: 5px;
+        }
+
+        #restaurantdetails {
+            padding: 10px;
+            text-align: center justify;
+            text-justify: inter-word;
+        }
+
+        .restaurantdesc {
+            font-weight: normal;
+            font-size: large;
+        }
+
+        .star-container {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+        }
+
+        .star-container .fa-star {
+            color: orange;
+        }
+
+
+
+    </style>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!--    FOR SIDE NAV    -->
+    <div class = "sideNav"id = "sideNav">
+        <div id = "loginHeader">
+            
+            <div id = "nav_Exit" onclick="closeNav()" style="font-weight: bold;" class = "fa fa-close">
+            </div>
+        </div><br>
+
+            <center>
+        <div class="wrapper">
+            <div class = "form_box_login">
+                <form action ="/login" method="post">
+                    <div>
+                        <h2 style="font-size: 1.5em;"><br>Login</h2>
+                    </div>
+                    <div class = "exit"><box-icon type='solid' name='x-circle'></box-icon>
+                    <!-- FOR USERNAME -->
+                    <div class = "input_box">
+                        <label>Username</label><br>
+                        <input type = "text" name = "username" placeholder="Username">
+                    </div><br>
+
+                    <!-- FOR PASSWORD -->
+                    <div class = "input_box">
+                        <label>Password </label><br>
+                        <input type = "password" name = "password" placeholder="Password">
+                        
+                    </div><br>
+
+                        <input type="checkbox" name="rememberMe">Remember Me
+                        <br><br>
+                    
+                    <!-- Log In Button-->
+                    <div>
+                        <input type ="submit" value = "Log in">
+                    </div><br>
+                    
+                    <!-- FORGOT PASSWORD-->
+                    <div class = "form-link">
+                        <a href = "#" class = "link" id = "forgot_pass" style="color: black;">Forgot password</a>
+                    </div><br>
+                    
+
+                    <!-- Register an Account -->
+                    <span>
+                        Don't have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Sign up now </a>
+                    </span>
+                </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+
+        </center>
+
+
+
+        <center>
+        <div class="wrapper_reg">
+            <div class = "form_box_signup" id="signupForm">
+                <form action ="/signup" method="post">
+                    <div>
+                        <h2 style="font-family: 'Lora', serif; font-size: 1.5em;"><br>Register</h2>
+                    </div>
+                    <!-- FOR USERNAME -->
+                    <div class = "input_box">
+                        <label>Username</label><br>
+                        <input type = "text" name = "username" placeholder="Username">
+                    </div><br>
+                    <!-- FOR PASSWORD -->
+                    <div class = "input_box">
+                        <label>Password </label><br>
+                        <input type = "password" name = "password" placeholder="Password">
+                        
+                    </div><br>
+                    <div class = "input_box">
+                        <label>Re-enter Password </label><br>
+                        <input type = "password" name = "re_password" placeholder="Re-enter Password">
+                        
+                    </div><br>
+                    
+                    <!-- Sign Up Button-->
+                    <div>
+                        <input type ="submit" value = "Sign up"><br>
+                    </div><br>
+                    
+                    <!-- Already Have an Account -->
+                    <span>
+                        Already have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Login</a>
+                    </span>
+                </form>
+            </div><br>
+            <div class="line"></div>
+        </center>
+
+    </div>
+
+
+    <header class="navigation" style="position: sticky; top: 0; z-index: 2;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+            <div class="container">
+                <a href="Homepage">
+                    <img src = "images/logo.png" width = 100px height = 85px/>
+                </a>
+
+                <form action="/search" method="get" id="searchbar" style="margin-top: 15px; margin-left: 40px; border: #2F3B1C solid 2px;">
+                    <input type="text" name="user" placeholder="Search...">
+                    <button type="submit"><img src="./images/searchicon.png"></button>
+                </form>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Homepage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="restolist">Restaurants</a>
+                        </li>
+                        <li class="nav-item" onclick="openNav()">
+                            {{#if user}}
+                                <li clas="nav-item">
+							        <a class="nav-link" href="logout">Sign Out</a>
+						        </li>
+                                <a href="User">
+						            <img src="/{{profile.image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+						        </a>
+                            {{else}}
+                                <p class="nav-link" href="" onclick="openNav()" style="cursor: pointer;">Login</p>
+                            {{/if}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="header" class="parallax">
+        <div id="headercontent" class="center">
+            <img src="images/logo.png" alt="logo" style="width: 500px;">
+                <p class="description" style="padding: 0; margin: 0;"> Immerse yourself in LaSalle Eats, a refined review website dedicated to restaurants surrounding the DLSU campus,
+                exclusively tailored for the discerning students of DLSU. Join us today to elevate your dining experiences and savor the very best that DLSU's culinary
+                landscape has to offer.
+                </p>
+                <form action="" id="searchbar" style="margin-top: 15px; border: #2F3B1C solid 2px;">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><img src="./images/searchicon.png"></button>
+                </form>
+
+        </div>
+    </div>
+
+    <div id="establishments">
+        <h1 style="margin: auto; padding: 30px;"> Most Reviewed Restaurants </h1>
+        <div id="containers">
+           {{#each sortByRating}}
+            <div class="mostreviewed">
+                <div id="restaurantphoto" style="background-image: url({{image}});">
+                </div>
+                <div id="restaurantdetails">
+                    <a href="restolist">
+                    <h2 id="restaurantname"> {{name}} </h2>
+                    <h3 class="restaurantdesc">{{desc}}</h3>
+                    <div class="star-container">
+                         {{#each star}}
+                              <span class="fa fa-star" style = "color: orange;"></span>
+                           {{/each}}
+                           {{#each emptyStar}}
+                              <span class="fa fa-star-o" style = "color: orange;"></span>
+                           {{/each}}<p>({{rating}})</p>
+                    </div>
+                    </a>
+
+                </div>
+            </div>
+            {{/each}}
+        
+            <div class="mostreviewed">
+                <div id="restaurantphoto" style="background-image: url(images/store/ganggangchicken.jpg);">
+                </div>
+                <div id="restaurantdetails">
+                    <a href="restolist">
+                    <h2 id="restaurantname"> Gang Gang Chicken </h2>
+                    <h3 class="restaurantdesc"> Real taste, not just the sauce, boneless fried chicken. </h3>
+                    <div class="star-container">
+                        <i class="fa fa-star"></i>
+                        <span class="fa fa-star-o" style = "color: orange;"></span>
+                        <span class="fa fa-star-o" style = "color: orange;"></span>
+                        <span class="fa fa-star-o" style = "color: orange;"></span>
+                        <span class="fa fa-star-o" style = "color: orange;"></span>
+                        <p>(3)</p>
+
+                    </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+	<script src="loginscript.js"></script>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</body>
+</html>

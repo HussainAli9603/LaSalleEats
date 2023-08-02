@@ -1,0 +1,172 @@
+app.get('/search', async (req, res) => {
+
+  if(req.query.user != undefined && req.query.user !=""){    
+     var allData = []
+
+     if("24Chicken" == req.query.user){
+      let chicken = await Chicken.find({}).lean();
+      if(chicken != null && chicken !=""){
+            for (const product of chicken) {
+                var pushData = {
+                   name: "24 Chicken",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+     }else{    
+      let chicken = await Chicken.find({$or:[{title : {$regex: new RegExp(req.query.user, 'i')}},{content : {$regex: new RegExp(req.query.user, 'i')}}], }).lean();
+         if(chicken != null && chicken !=""){
+            for (const product of chicken) {
+                var pushData = {
+                   name: "24 Chicken",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+         }
+
+     if("El Poco Cantina" == req.query.user){
+      let store = await Store.find({}).lean();
+      if(store != null && store !=""){
+            for (const product of store) {
+               var pushData = {
+                   name: "El Poco Cantina",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+     }else{    
+      let store = await Store.find({$or:[{title : {$regex: new RegExp(req.query.user, 'i')}},{content : {$regex: new RegExp(req.query.user, 'i')}}], }).lean();
+         if(store != null && store !=""){
+            for (const product of store) {
+               var pushData = {
+                   name: "El Poco Cantina",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+       }
+
+    if("Obscure Cafe" == req.query.user){
+      let cafe = await Cafe.find({}).lean();
+      if(cafe != null && cafe !=""){
+            for (const product of cafe) {
+               var pushData = {
+                   name: "Obscure Cafe",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+     }else{    
+      let cafe = await Cafe.find({$or:[{title : {$regex: new RegExp(req.query.user, 'i')}},{content : {$regex: new RegExp(req.query.user, 'i')}}], }).lean();
+         if(cafe != null && cafe !=""){
+            for (const product of cafe) {
+               var pushData = {
+                   name: "Obscure Cafe",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+         }
+
+
+    if("Everything But Cheese" == req.query.user){
+      let cheese = await Cheese.find({}).lean();
+      if(cheese != null && cheese !=""){
+            for (const product of cheese) {
+               var pushData = {
+                   name: "Everything But Cheese",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+     }else{    
+      let cheese = await Cheese.find({$or:[{title : {$regex: new RegExp(req.query.user, 'i')}},{content : {$regex: new RegExp(req.query.user, 'i')}}], }).lean();
+         if(cheese != null && cheese !=""){
+            for (const product of cheese) {
+               var pushData = {
+                   name: "Everything But Cheese",
+                   desc: "Serving happiness at a budget-friendly price since 2017. We offer 10 delicious flavors marinated for 24 hours and prepared with a secret blend of herbs and spices, with an option for boneless chicken. Selling delicious Korean Fried Chicken is not our only goal. Being part of our customer’s lives and communities is what we aim for.",
+                   username: product.username,
+                   content: product.content,
+                   title: product.title,
+                   image: product.image,
+                   commentFile:product.commentFile,
+                   reviews: product.reviews,
+                   likes: product.likes,
+                   dislikes: product.dislikes,  
+                }
+               await allData.push(pushData);
+              }
+           }
+         }             
+     console.log(allData)
+     res.render("search",{allData:allData})
+        
+
+      }   
+
+});

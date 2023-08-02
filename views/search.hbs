@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<head>
+  <link href="images/logo.png" rel="shortcut icon" />
+  <title>La Salle Eats | 24 Chicken</title>
+  <link href="images/logo.png" rel="shortcut icon" />
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <script src = "loginscript.js"></script>
+    <!--FOR SIDE NAV-->
+  
+    <div class = "sideNav"id = "sideNav">
+        <div id = "loginHeader">
+            
+            <div id = "nav_Exit" onclick="closeNav()" style="font-weight: bold;" class = "fa fa-close">
+            </div>
+        </div><br>
+      
+            <center>
+        <div class="wrapper">
+            <form action ="/24login" method="post">
+                <div>
+                    <h2 style="font-size: 1.5em;"><br>Login</h2>
+                </div>
+                <div class = "exit"><box-icon type='solid' name='x-circle'></box-icon>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br> 
+                <input type="checkbox" name="rememberMe">Remember Me
+                        <br><br>
+                <!-- Log In Button-->
+                <div>
+                    <input type ="submit" value = "Log in">
+                </div><br>
+                
+                <!-- FORGOT PASSWORD-->
+                <div class = "form-link">
+                    <a href = "#" class = "link" id = "forgot_pass" style="color: black;">Forgot password</a>
+                </div><br>
+                
+
+                <!-- Register an Account -->
+                <span>
+                    Don't have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Sign up now </a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+      
+      </center>
+      
+      
+      
+      <center>
+        <div class="wrapper_reg">
+            <div class = "form_box_signup">
+                <form action ="/24signup" method="post">
+                <div>
+                    <h2 style="font-family: 'Lora', serif; font-size: 1.5em;"><br>Register</h2>
+                </div>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br>
+                <div class = "input_box">
+                    <label>Re-enter Password </label><br>
+                    <input type = "password" name = "re_password" placeholder="Re-enter Password">
+                    
+                </div><br>
+                
+                <!-- Sign Up Button-->
+                <div>
+                    <input type ="submit" value = "Sign up"><br>
+                </div><br>
+                
+
+                <!-- Already Have an Account -->
+                <span>
+                    Already have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Login</a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+        
+      
+      </center>
+      
+      </div>
+
+
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a href="Homepage">
+                    <img src = "images/logo.png" width = 50px height = 50px/>
+            </a>
+            <form action="" id="searchbar" style="margin-top: 15px; margin-left: 40px; border: #2F3B1C solid 2px;">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><img src="./images/searchicon.png"></button>
+            </form>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Homepage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restolist">Restaurants</a>
+                    </li>
+                    <li class="nav-item" onclick="openNav()">
+                        {{#if user}}
+                                <li clas="nav-item">
+							        <a class="nav-link" href="/24logout">Sign Out</a>
+						        </li>
+                                <a href="User">
+						            <img src="images/defaulticon.png" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+						        </a>
+                            {{else}}
+                                <p class="nav-link" href="" onclick="openNav()" style="cursor: pointer;">Login</p>
+                            {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div style="z-index: 2; background-color: white;">
+
+<section class="py-5 header">
+
+    <div class="comment-thread card-body shadow-sm p-5 col-lg-9 mx-auto" style="margin-top: 10%;">
+        <div class="card">
+		  
+          <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+		   
+			<br>
+			<h5 class="font-italic mb-4">Reviews</h5>
+				{{#each allData}}
+			<div class = "user_post">
+                {{#if image}}
+                  <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50>
+                {{else}}
+                  <img class="rounded-circle shadow-1-strong me-3" src="images/UserProfile/user01icon.jpg" width = 50 height = 50>
+                {{/if}}
+				
+				<div style = "margin-left: 10px ;">
+                    <a href = "user.html"><h6 class="fw-bold mb-1 me-3" style = "color: seagreen;">{{username}}</h6></a>
+                    
+                    <div class="small d-flex justify-content-start" style="float: right;">
+                        <!-- <a href="/24Chicken/edit/{{id}}" class = "btn"><i class="fa fa-edit"></i></a> -->
+                        <!-- <a href="/24Chicken/delete/{{id}}" class = "btn"><i class="fa fa-remove"></i></a> -->
+                        </div>
+                        {{#if rating}}
+                          <p class="text-muted small mb-0"> {{rating}}/5
+                        {{else}}
+                          <p class="text-muted small mb-0"> 0/5
+                        {{/if}}
+                       
+
+                        <span class="fa fa-star" style = "color: orange;"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                       
+
+                       </p>
+
+					
+                   
+					 <h6>{{title}}</h6>								
+					<p class="mt-3 mb-4 pb-2">
+                        {{content}}
+					</p>
+
+					<div class="small d-flex justify-content-start">
+						<a href="#!" class="d-flex align-items-center me-3">
+						<p class="mb-0 d-flex align-items-center me-3" style = "color: black;"> Helpful? </p></a>
+                        <form action="/24Chicken/like/{{id}}" method="post">
+						    <button type="submit" class = "btn" ><i class="fa fa-thumbs-up"></i> {{likes.length}} </button>
+                        </form>
+                        <form action="/24Chicken/dislike/{{id}}" method="post">
+                            <button type="submit" class = "btn" ><i class="fa fa-thumbs-up fa-rotate-180"></i> {{dislikes.length}} </button>
+                            
+                        </form>
+						
+					</div>
+				</div>
+			</div><br>
+           <br>
+           <br>
+                {{/each}}
+           <br>
+           
+			<div class = "user_new_post">
+								
+				<div id = "newpost">
+				
+									
+				</div>
+								
+			</div>
+          </div>
+        </div>
+	</div>
+
+</section>  
+</div>
+<script src="jquery.min.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+<script src="nav.js"></script>
+
+</body>
+
+

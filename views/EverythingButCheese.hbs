@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<head>
+  <link href="images/logo.png" rel="shortcut icon" />
+  <title>La Salle Eats | Everything But Cheese</title>
+  <link href="images/logo.png" rel="shortcut icon" />
+  <link href="bootstrap.min1.css" rel="stylesheet">
+  <link href="nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <script src = "loginscript.js"></script>
+    <!--FOR SIDE NAV-->
+  
+    <div class = "sideNav"id = "sideNav">
+        <div id = "loginHeader">
+            
+            <div id = "nav_Exit" onclick="closeNav()" style="font-weight: bold;" class = "fa fa-close">
+            </div>
+        </div><br>
+      
+            <center>
+        <div class="wrapper">
+            <div class = "form_box_login">
+                <form action ="/cheeselogin" method="post">
+                <div>
+                    <h2 style="font-size: 1.5em;"><br>Login</h2>
+                </div>
+                <div class = "exit"><box-icon type='solid' name='x-circle'></box-icon>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br> 
+
+                <input type="checkbox" name="rememberMe">Remember Me
+                        <br><br>
+                <!-- Log In Button-->
+                <div>
+                    <input type ="submit" value = "Log in">
+                </div><br>
+                
+                <!-- FORGOT PASSWORD-->
+                <div class = "form-link">
+                    <a href = "#" class = "link" id = "forgot_pass" style="color: black;">Forgot password</a>
+                </div><br>
+                
+
+                <!-- Register an Account -->
+                <span>
+                    Don't have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Sign up now </a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+      
+      </center>
+      
+      
+      
+      <center>
+        <div class="wrapper_reg">
+            <div class = "form_box_signup">
+                <form action ="/cheesesignup" method="post">
+                <div>
+                    <h2 style="font-family: 'Lora', serif; font-size: 1.5em;"><br>Register</h2>
+                </div>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br>
+                <div class = "input_box">
+                    <label>Re-enter Password </label><br>
+                    <input type = "password" name = "re_password" placeholder="Re-enter Password">
+                    
+                </div><br>
+                
+                <!-- Sign Up Button-->
+                <div>
+                    <input type ="submit" value = "Sign up"><br>
+                </div><br>
+                
+
+                <!-- Already Have an Account -->
+                <span>
+                    Already have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Login</a>
+                </span>
+            </form>
+            </div><br>
+            <div class="line"></div>
+        </div>
+        
+      
+      </center>
+      
+      </div>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a href="Homepage">
+                <img src = "images/logo.png" width = 50px height = 50px/>
+            </a>
+            <form action="/search" id="searchbar" style="margin-top: 15px; margin-left: 40px; border: #2F3B1C solid 2px;">
+                <input type="text" name="user" placeholder="Search...">
+                <button type="submit"><img src="./images/searchicon.png"></button>
+            </form>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Homepage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restolist">Restaurants</a>
+                    </li>
+                    <li class="nav-item" onclick="openNav()">
+                        {{#if user}}
+                                <li clas="nav-item">
+							        <a class="nav-link" href="/cheeselogout">Sign Out</a>
+						        </li>
+                                <a href="User">
+						            <img src="/{{profile.image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+						        </a>
+                            {{else}}
+                                <p class="nav-link" href="" onclick="openNav()" style="cursor: pointer;">Login</p>
+                            {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div style="z-index: 2; background-color: white;">
+<div class="header pb-8 pt-lg-8 " style="min-height: 300px; background-image: url(images/store/ebcHeader.jpg); background-size: cover; background-position: center top;">
+</div>
+<section class="py-5 header">
+    <div class="col-lg-9 mx-auto">
+          <div class="card-body shadow-sm p-5">
+            <nav ="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="Homepage" class="text-uppercase" style = "color:seagreen;">Home</a></li>
+                <li class="breadcrumb-item"><a href="restolist" class="text-uppercase" style = "color:seagreen;">Restaurants</a></li>
+                <li class="breadcrumb-item active text-uppercase">Everything But CHEESE </li>
+              </ol>
+            </nav>
+            <h5 class="text-muted">Everything But CHEESE </h5>
+            <p class="font-italic text-muted">If you love CHEEEESE, you're looking in the right place.</p>
+          </div>
+    </div>
+
+    <div class="container py-4">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="nav flex-column pilled" role="tablist" >
+                    <a class="nav-link mb-3 p-3 shadow active" id="tab-home" data-toggle="pill" href="#menu" role="tab">
+                        <span class="font-weight-bold small text-uppercase">Menu</span></a>
+
+                    <a class="nav-link mb-3 p-3 shadow" data-toggle="pill" href="#photos" role="tab"> 
+                        <span class="font-weight-bold small text-uppercase">Photos</span></a>
+
+                    <a class="nav-link mb-3 p-3 shadow" data-toggle="pill" href="#loc" role="tab" >
+                        <span class="font-weight-bold small text-uppercase">Location</span></a>
+						
+                    <a class="nav-link mb-3 p-3 shadow" data-toggle="pill" href="#contact" role="tab">
+                        <span class="font-weight-bold small text-uppercase">Contact Details</span></a>
+                    </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <div class="tab-content" id="content">
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="menu" role="tabpanel" >
+                        <h4 class="font-italic mb-4">Menu</h4>
+                        <p class="font-italic text-muted mb-2 cont">
+                            <img class="modalimg" id="menumod" src="images/store/cheeseMenu.jpg" width=100% />
+                            <div id="idmodal" class="modal">
+                              <img class="modal-content" id="img01">
+                              <span class="close">&times;</span>
+                            </div>
+                        </p>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="photos" role="tabpanel" >
+                        <h4 class="font-italic mb-4">Photos</h4>
+                        <p class="font-italic text-muted mb-2">
+
+                            <div id="demo" class="carousel slide" data-ride="carousel">
+                              <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                <li data-target="#demo" data-slide-to="1"></li>
+                                <li data-target="#demo" data-slide-to="2"></li>
+                              </ul>
+
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img src="images/store/cheese1.jpg" class="carousel-photo">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="images/store/cheese2.jpg" class="carousel-photo">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="images/store/cheese3.jpg" class="carousel-photo">
+                                </div>
+                              </div>
+
+                              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="fa fa-chevron-left"></span>
+                              </a>
+                              <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="fa fa-chevron-right"></span>
+                              </a>
+
+                            </div>
+                        </p>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="loc" role="tabpanel" >
+                        <h4 class="font-italic mb-4">Location</h4>
+                        <p class="font-italic text-muted mb-2">
+                            <b>Opening Hours</b>: 11AM - 7PM <br>
+                            <b>Address</b>: EBC Sherwood Place, La Salle Taft, Manila, Metro Manila <br>
+                        </p>
+                    </div>
+					
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="contact" role="tabpanel" >
+                        <h4 class="font-italic mb-4">Contact Details</h4>
+                        <p class="font-italic text-muted mb-2">
+                            <b>Mobile Number</b>: (+63) 961 225 8225 <br>
+                            <b>Facebook</b>: <a href = "https://www.facebook.com/everythingbutcheese/" style = "color:seagreen;"> https://www.facebook.com/everythingbutcheese/ </a><br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-thread card-body shadow-sm p-5 col-lg-9 mx-auto" style="margin-top: 10%;">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="font-italic mb-4">Post a Review</h4>
+			
+          </div>
+		  
+          <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+            <div class="d-flex flex-start w-100">
+                {{#if profile.image}}
+                 <img class="rounded-circle shadow-1-strong me-3" src="/{{profile.image}}" alt=" " width="35" height="35" />
+                {{/if}}
+              <div class="form-outline w-100" style="margin-left:10px;">
+                
+				{{#if user}}
+			<form id="submission" action="/EverythingButCheese/chessesubmit_comment" method="post" enctype="multipart/form-data">
+                <input type = "text"  class="form-control" id = "post-title" name = "postTitle" placeholder = "Title">
+                <textarea class="form-control" id="textAreaExample" name="comment" rows="4" style="background: #fff;" placeholder="Reply here..."></textarea>
+                <input type="file" name="image" style="margin-bottom: 10px; margin-top: 10px;">
+
+                <div>
+                <label style="text-align: left; margin-left: 8px">Rating</label>
+                    <select name="rating" style="width: 100px" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <br>
+
+                <span class="float-end mt-2 pt-1">
+                    <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="cancel()">Cancel</button>
+                </span>
+            </form>
+            {{else}}
+            {{/if}}
+				
+			  </div>
+            </div>
+           
+		   
+			<br>
+			<h5 class="font-italic mb-4">Reviews</h5>
+            {{#each data}}
+
+			<div class = "user_post">
+				
+				{{#if image}}
+                        <img src="/{{image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+                        </a>
+            {{else}}
+            <img src="./images/defaulticon.png " class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+            </a>
+            {{/if}}
+				<div style = "margin-left: 10px ;">
+					<a href = "sunghoon.html"><h6 class="fw-bold mb-1 me-3" style = "color: seagreen;">{{username}}</h6></a>
+                     <div class="small d-flex justify-content-start" style="float: right;">
+                        <a href="/EverythingButCheese/edit/{{id}}" class = "btn"><i class="fa fa-edit"></i></a>
+                        <a href="/EverythingButCheese/delete/{{id}}" class = "btn"><i class="fa fa-remove"></i>
+                            </a>
+                            
+                        </div>
+                         {{#if rating}}
+                              <p class="text-muted small mb-0"> {{rating}}/5
+                            {{else}}
+                              <p class="text-muted small mb-0"> 0/5</p>
+                            {{/if}}
+
+                           {{#each star1}}
+                              <span class="fa fa-star" style = "color: orange;"></span>
+                           {{/each}}
+                           {{#each emptyStar1}}
+                              <span class="fa fa-star-o" style = "color: orange;"></span>
+                           {{/each}}
+                            
+                           
+                           
+					<h6>{{title}}</h6>
+                    {{#if commentFile}}
+                           <img src="/{{commentFile}}" style="width: 200px;height: 100px">
+                        {{else}}
+                        {{/if}}		 						
+					<p class="mt-3 mb-4 pb-2" style="width:500px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{content}}   
+                        </p>
+                   
+                         <a href="/EverythingButCheese/view/{{id}}" style="float: right;margin-top: -35px; white-space:nowrap">
+                            <p>readmore >></p>
+                            <!-- <i class="fa fa-thumbs-up"></i>  -->
+                         </a>
+
+					<div class="small d-flex justify-content-start">
+						<a href="#!" class="d-flex align-items-center me-3">
+						<p class="mb-0 d-flex align-items-center me-3" style = "color: black;"> Helpful? </p></a>
+						<form action="/EverythingButCheese/like/{{id}}" method="post">
+                            <button type="submit" class = "btn" ><i class="fa fa-thumbs-up"></i> {{likes.length}} </button>
+                        </form>
+                        <form action="/EverythingButCheese/dislike/{{id}}" method="post">
+                            <button type="submit" class = "btn" ><i class="fa fa-thumbs-up fa-rotate-180"></i> {{dislikes.length}} </button>
+                            
+                        </form>
+					</div>
+                      <button type="button" class="btn edit" style = " white-space:nowrap; float: right;"      data-toggle="modal" data-target="#item1-{{id}}">
+                               <i class="fa fa-edit"></i>
+                     </button>
+				</div>
+			</div>	
+            {{#each reviewss}}
+
+              <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
+                <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50>
+                <div style = "margin-left: 10px ;">
+                  <a href = "user.html"><h6 style = "color: seagreen; font-size:16px; display:flex; margin-top:10px;">{{username}}</h6></a>
+                        {{#if uploadImage}}
+                           <img src="/{{uploadImage}}" style="width: 200px;height: 100px">
+                        {{else}}
+                        {{/if}}
+                
+                  <p class="mt-3 mb-4 pb-2" style="width:500px;overflow: hidden;text-overflow: ellipsis;">
+                    {{review}}               
+                  </p>
+
+                   <a href="/EverythingButCheese/viewsCheese/{{review}}" style="float: right;margin-top: -35px; white-space:nowrap">
+                            <p>readmore >></p>
+                            <!-- <i class="fa fa-thumbs-up"></i>  -->
+                  </a>
+
+                </div>
+              </div>
+            {{/each}}
+
+               <!-- Modal -->
+      <div class="modal fade" id="item1-{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">            
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel2">Title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/EverythingButCheese/add/cheese-review" style="margin-top: -32px" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+               
+            <input type="hidden" class="form-control" value="{{id}}"  name="commentId" style="background: #fff;"><br>
+            <textarea type="text" rows="5" class="form-control"  name="replay" style="background: #fff;" placeholder="Reply here..."></textarea>
+            <br>
+            <input type="file" class="form-control"  name="image" style="background: #fff;">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+
+            <hr>			
+                 {{/each}}      
+      
+      <br>
+			</div>
+          </div>
+        </div>
+	</div>
+</section>  
+</div>
+<script src="jquery.min.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+<script src="nav.js"></script>
+
+</body>
+
+

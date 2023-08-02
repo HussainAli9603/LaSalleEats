@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<head>
+  <link href="images/lsleats.png" rel="shortcut icon" />
+  <title>La Salle Eats | Restaurants</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="images/logo.png" rel="shortcut icon" />
+  <link href="restolist.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+
+/*  FOR NAV */
+a:link {
+    
+    background-color: transparent;
+    text-decoration: underline;
+
+}
+.link:hover{
+    background-color: #7bc438;
+}
+.sideNav{
+    
+    z-index: -1;
+    transition: 0.4s;
+    top: 0;
+    width: 0;
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(50px);
+    border: #487748 solid 5px;;
+    font-weight: lighter;
+    overflow-x: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+}			
+#loginHeader{
+    width: 330px;
+    height: 150px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+#nav_Exit{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width:25px;
+    align-items: center;
+    
+}
+#nav_Title{
+    padding:10px;
+    display: flex;
+    width:150px;
+    flex-direction: column;
+}
+.wrapper, .wrapper_reg{
+    top: 60%;
+    transform:translate(-50%, -50%);
+    width: 300px;
+    height: 580px;
+    position: fixed;
+    font-weight: lighter;
+
+    
+}
+input[type = "text"], input[name = "password"]{
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+}
+input[type = "text"], input[name = "re_password"]{
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+}
+input[type = "submit"]{
+    padding:10px; 
+    width: 244px;
+    background-color: #466D1D;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+input[type = "submit"]:hover{
+    background-color: #354A21;
+}
+label{
+    float: left;
+    margin-left: 55px;
+}
+.facebook_btn, .google_btn{
+    background: none;
+    border: 0;
+}
+.line{
+    height: 1px;
+    width: 100%;
+    position: relative;
+    background-color: black;
+}
+.wrapper_reg{
+    opacity: 0;
+    pointer-events: none;
+}
+.sideNav.show_wrapper_reg .wrapper_reg{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sideNav.show_wrapper_reg .wrapper{
+    opacity: 0;
+    pointer-events: none;
+}
+.sideNav{
+    transition: .4s;
+}
+.sideNavactive{
+    left:0;
+}
+
+/*search bar*/
+
+.icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #2F3B1C;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+        }
+
+        .loginregister {
+            color: #444444;
+            font-weight: bold;
+        }
+
+        a:link, a:visited {
+            color: #444444;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #526534;
+            text-decoration: none;
+        }
+
+        .loginregister:hover {
+            color: #526534;
+        }
+
+        .navlinks {
+            word-spacing: 10px;
+            margin-right: 20px;
+            font-size:larger;
+            text-underline-offset: auto;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        /* searchbar */
+
+        #searchbar {
+            margin-left: 25px;
+            width: 100%;
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 60px;
+            padding: 10px 20px;
+            backdrop-filter: blur(4px) saturate(180%);
+        }
+
+        #searchbar input {
+            background: transparent;
+            flex: 1;
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            color: #444444;
+        }
+
+        #searchbar button img{
+            width: 30px;
+            height: 30px;
+        }
+
+        #searchbar button {
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0);
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            backdrop-filter: blur(4px) saturate(180%);
+        }
+
+        ::placeholder {
+            color: #444444;
+        }
+  </style>
+</head>
+
+<body>
+
+   <!--    FOR SIDE NAV    -->
+<div class = "sideNav"id = "sideNav">
+    <div id = "loginHeader">
+        
+        <div id = "nav_Exit" onclick="closeNav()" style="font-weight: bold;" class = "fa fa-close">
+        </div>
+    </div><br>
+
+        <center>
+    <div class="wrapper">
+        <div class = "form_box_login">
+            <form action ="/restologin" method="post">
+                <div>
+                    <h2 style="font-size: 1.5em;"><br>Login</h2>
+                </div>
+                <div class = "exit"><box-icon type='solid' name='x-circle'></box-icon>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br>
+                 <input type="checkbox" name="rememberMe">Remember Me
+                        <br><br>
+                
+                <!-- Log In Button-->
+                <div>
+                    <input type ="submit" value = "Log in">
+                </div><br>
+                
+                <!-- FORGOT PASSWORD-->
+                <div class = "form-link">
+                    <a href = "#" class = "link" id = "forgot_pass" style="color: black;">Forgot password</a>
+                </div><br>
+                
+
+                <!-- Register an Account -->
+                <span>
+                    Don't have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Sign up now </a>
+                </span>
+            </form>
+        </div><br>
+        <div class="line"></div>
+    </div>
+
+</center>
+
+
+
+<center>
+    <div class="wrapper_reg">
+        <div class = "form_box_signup">
+            <form action ="/restosignup" method="post">
+                <div>
+                    <h2 style="font-family: 'Lora', serif; font-size: 1.5em;"><br>Register</h2>
+                </div>
+                <!-- FOR USERNAME -->
+                <div class = "input_box">
+                    <label>Username</label><br>
+                    <input type = "text" name = "username" placeholder="Username">
+                </div><br>
+
+                <!-- FOR PASSWORD -->
+                <div class = "input_box">
+                    <label>Password </label><br>
+                    <input type = "password" name = "password" placeholder="Password">
+                    
+                </div><br>
+                <div class = "input_box">
+                    <label>Re-enter Password </label><br>
+                    <input type = "password" name = "re_password" placeholder="Re-enter Password">
+                    
+                </div><br>
+                
+                <!-- Sign Up Button-->
+                <div>
+                    <input type ="submit" value = "Sign up"><br>
+                </div><br>
+                
+
+                <!-- Already Have an Account -->
+                <span>
+                    Already have an account? <a href = "#" class = "link" id = "register_link" style="color: black;">Login</a>
+                </span>
+            </form>
+        </div><br>
+        <div class="line"></div>
+    </div>
+    
+
+</center>
+
+</div>
+
+  <header class="header fixed-top" style="z-index: 1;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a href="Homepage">
+                <img src = "images/logo.png" width = 50px height = 50px/>
+            </a>
+            <form action="" id="searchbar" style="margin-top: 15px; margin-left: 40px; border: #2F3B1C solid 2px;">
+              <input type="text" placeholder="Search...">
+              <button type="submit"><img src="./images/searchicon.png"></button>
+          </form>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Homepage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="restolist">Restaurants</a>
+                    </li>
+                    <li class="nav-item" onclick="openNav()">
+                        {{#if user}}
+                                <li clas="nav-item">
+                                    <a class="nav-link" href="logout">Sign Out</a>
+                                </li>
+                                <a href="User">
+                                    <img src="/{{profile.image}}" class="icon" style="a:hover { border-radius: #2F3B1C solid 4px;}">
+                                </a>
+                            {{else}}
+                                <p class="nav-link" href="" onclick="openNav()" style="cursor: pointer;">Login</p>
+                            {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container py-5" style = "margin-top: 100px;">
+  <div class="text-center mb-5">
+    <h1 class="display-4 font-weight-bold">Stalls and Restaurants</h1>
+    <p class="font-italic text-muted mb-0">Explore various cuisines around Taft.</p>
+  </div>
+
+  <h2 class="font-weight-bold mb-2">This Week's Favorites</h2>
+  <p class="font-italic text-muted mb-4">We recommend you to try these restaurants out this week.</p>
+
+  <div class="row pb-5 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4"><img src="images/store/elpoco.jpeg" class="img-fluid d-block mx-auto mb-3">
+          <h5> <a href="store" style = "color: seagreen;">El Poco Cantina</a></h5>
+          <p class="small text-muted font-italic">The best and most authentic birria around town.Come and experience the greatest Birria you've ever tasted!</p>
+          <ul class="list-inline small">
+            {{#each star3}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star" style = "color: orange;"></i></li>
+            {{/each}}
+            {{#each emptyStar3}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star-o" style = "color: orange;"></i></li>
+            {{/each}}
+            <li class="list-inline-item m-0 text-muted ms-10"> {{totalRating2}} ({{storeLength}}) </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4"><img src="images/store/24chick.jpeg" class="img-fluid d-block mx-auto mb-3">
+          <h5> <a href="24chicken" style = "color: seagreen;">24Chicken</a></h5>
+          <p class="small text-muted font-italic">Indulge and satisfy your cravings with the #1 lip-smacking Korean fried chicken in the Philippines! Available 24/7.</p>
+          <ul class="list-inline small">
+            {{#each star1}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star" style = "color: orange;"></i></li>
+            {{/each}}
+            {{#each emptyStar1}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star-o" style = "color: orange;"></i></li>
+            {{/each}}
+
+            <li class="list-inline-item m-0 text-muted ms-10">{{totalRating}} ({{chickenLength}}) </li>
+        
+            
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4"><img src="images/store/obscure.jpeg" alt="" class="img-fluid d-block mx-auto mb-3">
+          <h5> <a href="ObscureCafe" style = "color: seagreen;">Obscure Cafe</a></h5>
+          <p class="small text-muted font-italic">At Obscure Cafe, we believe in creating memorable experiences through exceptional coffee and delectable cuisine. </p>
+          <ul class="list-inline small">
+            {{#each star4}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star" style = "color: orange;"></i></li>
+            {{/each}}
+            {{#each emptyStar4}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star-o" style = "color: orange;"></i></li>
+            {{/each}}
+              <li class="list-inline-item m-0 text-muted ms-10">{{totalRating3}} ({{cafeLength}})</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+      <div class="card rounded shadow-sm border-0">
+        <div class="card-body p-4"><img src="images/store/ebc.jpeg" class="img-fluid d-block mx-auto mb-3">
+          <h5> <a href="EverythingButCheese" style = "color: seagreen;">Everything But Cheese</a></h5>
+          <p class="small text-muted font-italic">If you love CHEEEESE, you're looking at the right place. </br></br> #TheCheesiestPlaceOnEarth</p>
+          <ul class="list-inline small">
+            {{#each star2}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star" style = "color: orange;"></i></li>
+            {{/each}}
+            {{#each emptyStar2}}
+                  <li class="list-inline-item m-0"><i class="fa fa-star-o" style = "color: orange;"></i></li>
+            {{/each}}
+            <li class="list-inline-item m-0 text-muted ms-10"> {{totalRating1}} ({{cheeseLength}}) </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="font-weight-bold">Cuisines</h2>
+  <p class="font-italic text-muted mb-4">We've separated the food stalls and restaurants in DLSU from those outside for you.</p>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div id="accordion" class="accordion shadow">
+                <div class="card">
+                    <div id="heading1" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapse1"  class="btn btn-link text-dark font-weight-bold text-uppercase collapsible-link">WITHIN DLSU</button>
+                        </h2>
+                    </div>
+                    <div id="collapse1" aria-labelledby="heading1" data-parent="#accordion" class="collapse show">
+                        <div class="card-body">
+                            <ul class="font-weight-light m-0 store">
+                                <li class=""><a href = "store" style = "color: seagreen;">Coffee Bean and Tea Leaf</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Perico's Grill</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Colonel's Curry</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Potato Corner</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Crazy Lemon</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">The Shawarma Shack</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Infinitea</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Sandwich Corner</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div id="heading2" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapse2"  class="btn btn-link text-dark font-weight-bold text-uppercase collapsible-link">OUTSIDE DLSU</button>
+                        </h2>
+                    </div>
+                    <div id="collapse2" aria-labelledby="heading2" data-parent="#accordion" class="collapse show">
+                        <div class="card-body">
+                            <ul class="font-weight-light m-0">
+                                <li class=""><a href = "store" style = "color: seagreen;">El Poco Cantina</a></li>
+                                <li class=""><a href = "GangGangStore" style = "color: seagreen;">Gang Gang Chicken</a></li>
+                                <li class=""><a href = "Tahmee" style = "color: seagreen;">Tah-mee Drinking & Frozen Yogurt</a></li>
+                                <li class=""><a href = "24Chicken" style = "color: seagreen;">24 Chicken</a></li>
+                                <li class=""><a href = "ObscureCafe" style = "color: seagreen;">Obscure Cafe</a></li>
+                                <li class=""><a href = "EverythingButCheese" style = "color: seagreen;">Everything But Cheese</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">Pizza Telefono</a></li>
+                                <li class=""><a href = "store" style = "color: seagreen;">McDonald's</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery.min.js"></script>
+<script src="loginscript.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+<script src="restolist.js"></script>
+
+</body>
