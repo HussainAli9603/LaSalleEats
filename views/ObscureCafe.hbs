@@ -378,11 +378,10 @@
 
               <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
                 {{#if image}}
-                  <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50>
-                {{else}}
-                  <img class="rounded-circle shadow-1-strong me-3" src="/{{image1}}" width = 50 height = 50>
-
-                {{/if}}
+                    <img src="/{{image}}" width = 50 height = 50 >
+                 {{else}}
+                     <img src="./images/defaulticon.png " class="rounded-circle shadow-1-strong me-3"  width = 50 height = 50>
+                 {{/if}}
 
                 <div style = "margin-left: 10px ;">
                   <a href = "user.html"><h6 style = "color: seagreen; font-size:16px; display:flex; margin-top:10px;">{{username}}</h6></a>

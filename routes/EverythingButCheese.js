@@ -26,11 +26,33 @@ app.get('/', async(req, res) => {
          emptyStar1.push(i)
       }
        if(rev.reviews !== []){
-        for (var i = 0; i <= rev?.reviews?.length; i++ ) {
+        for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-            reviewData.push(rev.reviews[i])
+           if(rev.reviews[i]?.username == profile?.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
         }
        }
+      }
+       var img;
+      if(rev.username == profile?.username){
+         img = profile.image
+      }else{
+        img = rev.image
       }
       
       var cheeseData = {
@@ -41,7 +63,7 @@ app.get('/', async(req, res) => {
         username:rev.username,
         rating:rev.rating,
         title:rev.title,
-        image:rev.image,
+        image:img,
         star1:star1,
         emptyStar1:emptyStar1,
         reviewss:reviewData,
@@ -189,8 +211,8 @@ app.post('/add/cheese-review',async(req, res) => {
     var data = {
       id:req.body.commentId,
        review : req.body.replay,
-       username : profile.username,
-       image : profile.image,
+       username : req.session.username,
+       image : profile ? profile?.image : "",
        uploadImage:imagePath,
        likes:[],
        dilikes:[]

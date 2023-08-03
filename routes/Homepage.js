@@ -74,8 +74,6 @@ app.get('/', async(req, res) => {
     pushCheese.push(cheeseHighRating)
    // console.log(pushCheese)
 
-
-
    let avg2 = 0;
     store.forEach((rev) => {
         avg2 += rev.rating;
@@ -100,7 +98,6 @@ app.get('/', async(req, res) => {
     }
     pushStore.push(storeHighRating)
    // console.log(pushStore) 
-
   
    let avg3 = 0;
     cafe.forEach((rev) => {
@@ -307,7 +304,7 @@ app.post('/signup', async (req, res) => {
     user.re_password = await bcrypt.hash(user.re_password, salt);
 
     user = await user.save();
-    res.header('token', token).render('/');
+    res.header('token', token).redirect('/');
 });
 
 app.post('/24signup', async (req, res) => {

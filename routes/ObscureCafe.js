@@ -19,7 +19,6 @@ app.get('/', async(req, res) => {
       let star1 = [];
       let emptyStar1 = [];
       let reviewData = [];
-      let img;
 
       for (var i = 1; i <= rev.rating; i++ ) {
          star1.push(i)
@@ -28,18 +27,34 @@ app.get('/', async(req, res) => {
          emptyStar1.push(i)
       }
       if(rev.reviews !== []){
-        for (var i = 0; i <= rev?.reviews?.length; i++ ) {
+        for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-            reviewData.push(rev.reviews[i])
-         }
+           if(rev.reviews[i]?.username == profile?.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
+        }
        }
       }
-      for (var i = 0; i <= reviewData?.length; i++ ) {
-          if(reviewData[i]?.username == req.session.username){
-             img = profile?.image
-          }
+       var img;
+      if(rev.username == profile?.username){
+         img = profile.image
+      }else{
+        img = rev.image
       }
-      console.log(img)
       
       var cafeData = {
         id:rev._id,
@@ -227,8 +242,8 @@ app.post('/add/cafe-review',async(req, res) => {
     var data = {
       id:req.body.commentId,
        review : req.body.replay,
-       username : profile.username,
-       image : profile.image,
+       username : req.session.username,
+       image : profile ? profile?.image : "",
        uploadImage:imagePath,
        likes:[],
        dilikes:[]

@@ -37,11 +37,27 @@ app.get('/', async (req, res) => {
       if(rev.reviews !== []){
         for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-           
-            reviewData.push(rev.reviews[i])
+           if(rev.reviews[i].username == profile.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
         }
        }
       }
+
       var img;
       if(rev.username == profile.username){
          img = profile.image
@@ -75,10 +91,26 @@ app.get('/', async (req, res) => {
       for (var i = star1.length + 1; i <= 5; i++ ) {
          emptyStar1.push(i)
       }
-      if(rev.reviews !== []){
+       if(rev.reviews !== []){
         for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-            reviewData.push(rev.reviews[i])
+           if(rev.reviews[i].username == profile.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
         }
        }
       }
@@ -115,10 +147,26 @@ app.get('/', async (req, res) => {
       for (var i = star1.length + 1; i <= 5; i++ ) {
          emptyStar1.push(i)
       }
-      if(rev.reviews !== []){
+       if(rev.reviews !== []){
         for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-            reviewData.push(rev.reviews[i])
+           if(rev.reviews[i].username == profile.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
         }
        }
       }
@@ -155,14 +203,30 @@ app.get('/', async (req, res) => {
       for (var i = star1.length + 1; i <= 5; i++ ) {
          emptyStar1.push(i)
       }
-      if(rev.reviews !== []){
+       if(rev.reviews !== []){
         for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
-            reviewData.push(rev.reviews[i])
+           if(rev.reviews[i].username == profile.username){            
+             var data1 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:profile.image,
+
+             } 
+             reviewData.push(data1)
+           }else{
+            var data2 = {
+                review:rev.reviews[i].review,
+                username:rev.reviews[i].username,
+                image:rev.reviews[i].image,
+
+             } 
+             reviewData.push(data2)
+           }
         }
        }
       }
-       var img;
+      var img;
       if(rev.username == profile.username){
          img = profile.image
       }else{
