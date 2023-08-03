@@ -104,7 +104,24 @@ app.get('/', async(req, res) => {
          });
     } 
     else {
-        res.render('restolist');
+        res.render('restolist',{
+            chickenLength:chickenLength,
+            cheeseLength:cheeseLength,
+            storeLength:storeLength,
+            cafeLength:cafeLength,
+            totalRating:totalRating,
+            totalRating1:totalRating1,
+            totalRating2:totalRating2,
+            totalRating3:totalRating3,
+            star1:star1,
+            emptyStar1:emptyStar1,
+            star2:star2,
+            emptyStar2:emptyStar2,
+            star3:star3,
+            emptyStar3:emptyStar3,
+            star4:star4,
+            emptyStar4:emptyStar4
+        });
     }
 });
 

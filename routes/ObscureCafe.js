@@ -192,10 +192,7 @@ app.post('/dislike/:id', async (req, res) => {
 
 app.get('/view/:id', async (req, res) => {
     let getCafe = await Cafe.findOne({_id:req.params.id});
-    if(getCafe.username != req.session.username){
-        res.redirect('/ObscureCafe');     
-    }
-  
+   
     res.render('view3',{getCafe:getCafe});
 });
 
@@ -203,6 +200,7 @@ app.get('/view/:id', async (req, res) => {
 app.post('/add/cafe-review',async(req, res) => {
   const { replay, commentId } = req.body;
   let cafe = await Cafe.findOne({_id:req.body.commentId });
+  let profile = await Profile.findOne({username:req.session.username });
 
     //console.log(req.body);
       if (req.files && req.files.image) {
@@ -229,8 +227,8 @@ app.post('/add/cafe-review',async(req, res) => {
     var data = {
       id:req.body.commentId,
        review : req.body.replay,
-       username : cafe.username,
-       image : cafe.image,
+       username : profile.username,
+       image : profile.image,
        uploadImage:imagePath,
        likes:[],
        dilikes:[]
@@ -308,9 +306,7 @@ app.get('/search', async (req, res) => {
 
 app.get('/views-cafe/:review', async (req, res) => {
     let getCafe = await Cafe.find({});
-    if(getCafe.username != req.session.username){
-        res.redirect('/ObscureCafe');     
-    }
+  
     getCafes = []
     for (var i = 0; i <= getCafe.length; i++){
     const exists = getCafe[i]?.reviews?.find(

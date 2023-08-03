@@ -246,6 +246,7 @@ app.get('/views-chicken/:review', async (req, res) => {
 app.post('/add/user-review',async(req, res) => {
   const { replay, commentId } = req.body;
   let chicken = await Chicken.findOne({_id:req.body.commentId });
+  let profile = await Profile.findOne({username:req.session.username });
 
     //console.log(req.body);
       if (req.files && req.files.image) {
@@ -272,8 +273,8 @@ app.post('/add/user-review',async(req, res) => {
     var data = {
        id:req.body.commentId,
        review : req.body.replay,
-       username : chicken.username,
-       image : chicken.image,
+       username : profile.username,
+       image : profile.image,
        uploadImage:imagePath,
        likes:[],
        dilikes:[]

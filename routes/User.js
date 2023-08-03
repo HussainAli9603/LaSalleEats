@@ -37,6 +37,7 @@ app.get('/', async (req, res) => {
       if(rev.reviews !== []){
         for (var i = 0; i <= rev.reviews.length; i++ ) {
           if(rev.reviews[i] !== undefined){
+           
             reviewData.push(rev.reviews[i])
         }
        }
@@ -195,11 +196,11 @@ app.get('/', async (req, res) => {
      const cheeseComments = cheese?.length;
      const storeComments = store?.length;
      const commentlength = chicken?.length + cafe?.length + cheese?.length + store?.length;
-     console.log(commentlength)
+     // console.log(commentlength)
 
      var pushData1 = pushData.slice(0, 3);
      var pushData2 = pushData.slice(3, 10);
-     console.log(pushData1)
+     // console.log(pushData1)
 
       if(profile){
         // Render the User page and pass the username to it
@@ -322,7 +323,7 @@ app.post('/edit/user-review',async(req, res) => {
         id:req.body.commentId,
         review : req.body.replay,
         username : req.session.username,
-        image : chicken.image,
+        image : profile.image,
         uploadImage:imagePath,
         likes:[],
         dilikes:[]
@@ -354,7 +355,7 @@ app.post('/edit/user-review',async(req, res) => {
         id:req.body.commentId,
         review : req.body.replay,
         username : req.session.username,
-        image : store.image,
+        image : profile.image,
         uploadImage:imagePath,
         likes:[],
         dilikes:[]
@@ -386,7 +387,7 @@ app.post('/edit/user-review',async(req, res) => {
         id:req.body.commentId,
         review : req.body.replay,
         username : req.session.username,
-        image : cheese.image,
+        image : profile.image,
         uploadImage:imagePath,
         likes:[],
         dilikes:[]
@@ -418,7 +419,7 @@ app.post('/edit/user-review',async(req, res) => {
         id:req.body.commentId,
         review : req.body.replay,
         username : req.session.username,
-        image : cafe.image,
+        image : profile.image,
         uploadImage:imagePath,
         likes:[],
         dilikes:[]

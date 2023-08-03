@@ -65,6 +65,8 @@ app.get('/', async (req, res) => {
 app.post('/add/store-review',async(req, res) => {
   const { replay, commentId } = req.body;
   let store = await Store.findOne({_id:req.body.commentId });
+  let profile = await Profile.findOne({username:req.session.username });
+
 
     //console.log(req.body);
       if (req.files && req.files.image) {
@@ -91,8 +93,8 @@ app.post('/add/store-review',async(req, res) => {
     var data = {
       id:req.body.commentId,
        review : req.body.replay,
-       username : store.username,
-       image : store.image,
+       username : profile.username,
+       image : profile.image,
        uploadImage:imagePath,
        likes:[],
        dilikes:[]
@@ -230,9 +232,6 @@ app.post('/dislike/:id', async (req, res) => {
 
 app.get('/view/:id', async (req, res) => {
     let getStore = await Store.findOne({_id:req.params.id});
-    if(getStore.username != req.session.username){
-        res.redirect('/store');     
-    }
   
     res.render('view2',{getStore:getStore});
 });
@@ -299,9 +298,7 @@ app.get('/search', async (req, res) => {
 
 app.get('/views-store/:review', async (req, res) => {
     let getStore = await Store.find({});
-    if(getStore.username != req.session.username){
-        res.redirect('/store');     
-    }
+    
     getStores = []
     for (var i = 0; i <= getStore.length; i++){
     const exists = getStore[i]?.reviews?.find(

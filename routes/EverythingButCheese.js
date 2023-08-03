@@ -160,7 +160,9 @@ app.post('/like/:id', async (req, res) => {
 
 app.post('/add/cheese-review',async(req, res) => {
   const { replay, commentId } = req.body;
+  let profile = await Profile.findOne({username:req.session.username });
   let cheese = await Cheese.findOne({_id:req.body.commentId });
+
 
     //console.log(req.body);
       if (req.files && req.files.image) {
@@ -187,8 +189,8 @@ app.post('/add/cheese-review',async(req, res) => {
     var data = {
       id:req.body.commentId,
        review : req.body.replay,
-       username : cheese.username,
-       image : cheese.image,
+       username : profile.username,
+       image : profile.image,
        uploadImage:imagePath,
        likes:[],
        dilikes:[]
@@ -354,9 +356,7 @@ app.get('/search', async (req, res) => {
 
 app.get('/viewsCheese/:review', async (req, res) => {
     let getCheese = await Cheese.find({});
-    if(getCheese.username != req.session.username){
-        res.redirect('/EverythingButCheese');     
-    }
+    
     getCheeses = []
     for (var i = 0; i <= getCheese.length; i++){
     const exists = getCheese[i]?.reviews?.find(
