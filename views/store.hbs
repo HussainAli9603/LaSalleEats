@@ -345,7 +345,7 @@
                         {{else}}
                         {{/if}} 
 
-					<p class="mt-3 mb-4 pb-2" style="width:500px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+					<p class="mt-3 mb-4 pb-2" style="width:800px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
                             {{content}}   
                         </p>
                    
@@ -372,9 +372,9 @@
 			</div>
             {{#each reviewss}}
 
-              <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
+              <div class = "reply" style ="margin-left:100px; display:flex; flex-direction:row">
                 {{#if image}}
-                    <img src="/{{image}}" width = 50 height = 50 >
+                    <img src="/{{image}}" width = 50 height = 50 class="rounded-circle shadow-1-strong me-3">
                  {{else}}
                      <img src="./images/defaulticon.png " class="rounded-circle shadow-1-strong me-3"  width = 50 height = 50>
                  {{/if}}
@@ -385,7 +385,7 @@
                         {{else}}
                         {{/if}}
                 
-                  <p class="mt-3 mb-4 pb-2" style="width:500px;overflow: hidden;text-overflow: ellipsis;">
+                  <p class="mt-3 mb-4 pb-2" style="width:700px;overflow: hidden;text-overflow: ellipsis;">
                     {{review}}               
                   </p>
                   <a href="/store/views-store/{{review}}" style="float: right;margin-top: -35px; white-space:nowrap">

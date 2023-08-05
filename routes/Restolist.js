@@ -80,6 +80,38 @@ app.get('/', async(req, res) => {
      	    emptyStar4.push(i)
      }
 
+     const number1 = totalRating;
+     let numberString1 = String(number1);
+     let index = numberString1.indexOf(".");
+     if (index != -1) {
+        numberString1 = numberString1.slice(0, index + 2);
+     }
+     var result = parseFloat(numberString1);
+     
+     const number2 = totalRating1;
+     let numberString2 = String(number2);
+     let index1 = numberString2.indexOf(".");
+     if (index1 != -1) {
+        numberString2 = numberString2.slice(0, index + 2);
+     }
+     var result1 = parseFloat(numberString2);
+     
+     const number3 = totalRating2;
+     let numberString3 = String(number3);
+     let index2 = numberString3.indexOf(".");
+     if (index2 != -1) {
+        numberString3 = numberString3.slice(0, index + 2);
+     }
+     var result2 = parseFloat(numberString3);
+     
+     const number4 = totalRating3;
+     let numberString4 = String(number4);
+     let index3 = numberString4.indexOf(".");
+     if (index3 != -1) {
+        numberString4 = numberString4.slice(0, index + 2);
+     }
+     var result3 = parseFloat(numberString4);
+
     if (req.session.username) {
         res.render('restolist', { 
         	user: req.session.username,
@@ -88,10 +120,10 @@ app.get('/', async(req, res) => {
         	cheeseLength:cheeseLength,
         	storeLength:storeLength,
         	cafeLength:cafeLength,
-        	totalRating:totalRating,
-        	totalRating1:totalRating1,
-        	totalRating2:totalRating2,
-        	totalRating3:totalRating3,
+        	totalRating:result,
+        	totalRating1:result1,
+        	totalRating2:result2,
+        	totalRating3:result3,
         	star1:star1,
         	emptyStar1:emptyStar1,
         	star2:star2,
@@ -109,10 +141,10 @@ app.get('/', async(req, res) => {
             cheeseLength:cheeseLength,
             storeLength:storeLength,
             cafeLength:cafeLength,
-            totalRating:totalRating,
-            totalRating1:totalRating1,
-            totalRating2:totalRating2,
-            totalRating3:totalRating3,
+            totalRating:result,
+            totalRating1:result1,
+            totalRating2:result2,
+            totalRating3:result3,
             star1:star1,
             emptyStar1:emptyStar1,
             star2:star2,

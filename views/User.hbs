@@ -282,11 +282,16 @@
                        {{#each emptyStar1}}
                           <span class="fa fa-star-o" style = "color: orange;"></span>
                        {{/each}}
+
+                       <div class="small d-flex justify-content-start" style="float: right; margin: 12px">
+                         <a href="/User/edit/{{id}}" style="margin: 12px"><i class="fa fa-edit"></i></a>
+                         <a href="/User/delete/{{id}}" style="margin: 12px"><i class="fa fa-remove"></i></a>
+                       </div>
                                 
 
     								
     						<h4 style = "margin-top:10px">{{title}}</h4>
-    						<p class="mt-3 mb-4 pb-2">
+    						<p class="mt-3 mb-4 pb-2" style="width: 650px">
     							{{content}}
     						</p>
 
@@ -299,8 +304,62 @@
                                 
                 </form>
               </div>
+              <button type="button" class="btn edit" style = " white-space:nowrap; float: right;"        data-toggle="modal" data-target="#item11-{{id}}">
+                  <i class="fa fa-edit"></i>
+              </button>
     					</div>
-    				</div><br><hr>
+    				</div><br>
+
+              <!-- Modal -->
+      <div class="modal fade" id="item11-{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/User/edit/user-review" style="margin-top: -32px" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+               
+            <input type="hidden" class="form-control" value="{{id}}"  name="commentId" style="background: #fff;"><br>
+            <textarea type="text" rows="5" class="form-control"  name="replay" style="background: #fff;" placeholder="Reply here..."></textarea>
+            <br>
+            <input type="file" class="form-control"  name="image" style="background: #fff;">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+
+      {{#each reviewss}}
+
+          <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
+             {{#if image}}
+                <a href="User">
+                  <img src="/{{image}}" class="rounded-circle shadow-1-strong me-3" width = 50 height = 50>
+                  </a>
+                {{else}}
+                <img src="./images/defaulticon.png " class="rounded-circle shadow-1-strong me-3"  width = 50 height = 50>
+                </a>
+                {{/if}}
+            <!-- <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50> -->
+            <div style = "margin-left: 10px ;">
+              <a href = "/User"><h6 style = "color: seagreen; font-size:16px; display:flex; margin-top:10px;">{{username}}</h6></a>
+            
+              <p class="mt-3 mb-4 pb-2">
+                {{review}}               
+              </p>
+
+            </div>
+          </div>
+        {{/each}}
 
 				{{/each}}
         <!-- ------------------------------------------------------------------------ -->
@@ -334,10 +393,13 @@
                       <span class="fa fa-star-o" style = "color: orange;"></span>
                    {{/each}}
                             
-
+             <div class="small d-flex justify-content-start" style="float: right; margin: 12px">
+                  <a href="/User/edit/{{id}}" style="margin: 12px"><i class="fa fa-edit"></i></a>
+                  <a href="/User/delete/{{id}}" style="margin: 12px"><i class="fa fa-remove"></i></a>         
+            </div>
                 
             <h4 style = "margin-top:10px">{{title}}</h4>
-            <p class="mt-3 mb-4 pb-2">
+            <p class="mt-3 mb-4 pb-2" style="width: 650px">
               {{content}}
             </p>
 
@@ -350,8 +412,63 @@
                                 
                 </form>
               </div>
+              <button type="button" class="btn edit" style = " white-space:nowrap; float: right;"        data-toggle="modal" data-target="#item122-{{id}}">
+                  <i class="fa fa-edit"></i>
+              </button>
           </div>
-        </div><br><hr>
+        </div><br>
+
+        {{#each reviewss}}
+
+          <div class = "reply" style ="margin-left:60px; display:flex; flex-direction:row">
+             {{#if image}}
+                <a href="User">
+                  <img src="/{{image}}" class="rounded-circle shadow-1-strong me-3" width = 50 height = 50>
+                  </a>
+                {{else}}
+                <img src="./images/defaulticon.png " class="rounded-circle shadow-1-strong me-3"  width = 50 height = 50>
+                </a>
+                {{/if}}
+            <!-- <img class="rounded-circle shadow-1-strong me-3" src="/{{image}}" width = 50 height = 50> -->
+            <div style = "margin-left: 10px ;">
+              <a href = "/User"><h6 style = "color: seagreen; font-size:16px; display:flex; margin-top:10px;">{{username}}</h6></a>
+            
+              <p class="mt-3 mb-4 pb-2">
+                {{review}}               
+              </p>
+
+            </div>
+          </div>
+          <hr>
+        {{/each}}
+
+         <!-- Modal -->
+      <div class="modal fade" id="item122-{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/User/edit/user-review" style="margin-top: -32px" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+               
+            <input type="hidden" class="form-control" value="{{id}}"  name="commentId" style="background: #fff;"><br>
+            <textarea type="text" rows="5" class="form-control"  name="replay" style="background: #fff;" placeholder="Reply here..."></textarea>
+            <br>
+            <input type="file" class="form-control"  name="image" style="background: #fff;">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
 
         {{/each}}
           <br>
@@ -380,7 +497,7 @@
             <div style = "margin-left: 10px ;">
               <a href = "jake.html"><h6 style = "color: seagreen; font-size:16px;">{{username}}</h6></a>
                  
-                 {{#each star1}}
+                 {{#each star1 }}
                     <span class="fa fa-star" style = "color: orange;"></span>
                  {{/each}}
                  {{#each emptyStar1}}

@@ -711,9 +711,97 @@ app.get('/search', async (req, res) => {
            }
          }             
       }   
-
 });
+
+app.get('/edit/:id', async (req, res) => {
+  try{
+  let getChicken = await Chicken.findOne({_id:req.params.id});
+  let getCheese = await Cheese.findOne({_id:req.params.id});
+  let getCafe = await Cafe.findOne({_id:req.params.id});
+  let getStore = await Store.findOne({_id:req.params.id});
+  if(getChicken){
+    res.render('edit',{getChicken:getChicken});
+  }else if(getCheese){
+    res.render('edit2',{getCheese:getCheese});
+  }else if(getCafe){
+    res.render('edit3',{getCafe:getCafe});
+  }else if(getStore){
+    res.render('edit1',{getStore:getStore});
+  }
+  }catch(error){
+    console.log(error)
+  }
+});
+
+app.post('/edit/:id', async (req, res) => {
+  try{
+    let getChicken = await Chicken.findOne({_id:req.params.id});
+    let getCheese  = await Cheese.findOne({_id:req.params.id});
+    let getCafe    = await Cafe.findOne({_id:req.params.id});
+    let getStore   = await Store.findOne({_id:req.params.id});
+    if(getChicken){
+      getChicken.content = req.body.comment;
+      getChicken.save();
+      res.render('edit',{getChicken:getChicken});
+    }else if(getCheese){
+      getCheese.content = req.body.comment;
+      getCheese.save();
+      res.render('edit2',{getCheese:getCheese});
+    }else if(getCafe){
+      getCafe.content = req.body.comment;
+      getCafe.save();
+      res.render('edit3',{getCafe:getCafe}); 
+    }else if(getStore){
+      getStore.content = req.body.comment;
+      getStore.save();
+      res.render('edit1',{getStore:getStore});
+    }
+  
+  }catch(error){
+    console.log(error)
+  }
+});
+
+app.get('/delete/:id', async (req, res) => {
+  let chicken   = await Chicken.findOne({_id:req.params.id});
+  let getStore = await Store.findOne({_id:req.params.id});
+  let getCheese = await Cheese.findOne({_id:req.params.id});
+  let getCafe = await Cafe.findOne({_id:req.params.id});
+  if (chicken){
+      let chicken   = await Chicken.deleteOne({_id:req.params.id});
+      res.redirect('/User');
+  }else if(getStore){
+      let getStore  = await Store.deleteOne({_id:req.params.id});
+      res.redirect('/User');
+  }else if(getCheese){
+      let getCheese = await Cheese.deleteOne({_id:req.params.id});
+      res.render('/User');
+  }else if(getCafe){
+      let getCafe   = await Cafe.deleteOne({_id:req.params.id});
+      res.redirect('/User');
+  }
+
+   
+});
+
 
   
 module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
