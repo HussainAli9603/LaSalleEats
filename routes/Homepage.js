@@ -46,9 +46,6 @@ app.get('/', async(req, res) => {
    // console.log(pushChicken)
 
 
-
-
-
    let avg1 = 0;
     cheese.forEach((rev) => {
         avg1 += rev.rating;

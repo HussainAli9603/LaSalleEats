@@ -479,6 +479,9 @@ app.post('/edit/user-review',async(req, res) => {
       }else{
         imagePath = req.body.oldImage
       }
+     
+     res.setHeader('Content-Type', 'application/json');
+
       var data = {
         id:req.body.commentId,
         review : req.body.replay,
@@ -517,6 +520,9 @@ app.post('/like/:id', async (req, res) => {
   let getCheese = await Cheese.findOne({_id:req.params.id});
   let getCafe = await Cafe.findOne({_id:req.params.id});
   let getStore = await Store.findOne({_id:req.params.id});
+
+     res.setHeader('Content-Type', 'application/json');
+
   
   if(getChicken){
       if(getChicken?.likes[0]?.user == username){
@@ -581,6 +587,8 @@ app.post('/dislikes/:id', async (req, res) => {
   let getCheese = await Cheese.findOne({_id:req.params.id});
   let getCafe = await Cafe.findOne({_id:req.params.id});
   let getStore = await Store.findOne({_id:req.params.id});
+
+     res.setHeader('Content-Type', 'application/json');
     
     if(getChicken){
         if(getChicken?.dislikes[0]?.user == username){
@@ -643,6 +651,8 @@ app.post('/review-like/:username', async (req, res) => {
     console.log(req.params.username)
 
   let getChicken = await Chicken.findOne({username:req.params.username});
+     res.setHeader('Content-Type', 'application/json');
+
   
      var like = {
        user:username
@@ -719,6 +729,8 @@ app.get('/edit/:id', async (req, res) => {
   let getCheese = await Cheese.findOne({_id:req.params.id});
   let getCafe = await Cafe.findOne({_id:req.params.id});
   let getStore = await Store.findOne({_id:req.params.id});
+     res.setHeader('Content-Type', 'application/json');
+
   if(getChicken){
     res.render('edit',{getChicken:getChicken});
   }else if(getCheese){
@@ -739,6 +751,9 @@ app.post('/edit/:id', async (req, res) => {
     let getCheese  = await Cheese.findOne({_id:req.params.id});
     let getCafe    = await Cafe.findOne({_id:req.params.id});
     let getStore   = await Store.findOne({_id:req.params.id});
+    
+     res.setHeader('Content-Type', 'application/json');
+
     if(getChicken){
       getChicken.content = req.body.comment;
       getChicken.save();
@@ -767,6 +782,9 @@ app.get('/delete/:id', async (req, res) => {
   let getStore = await Store.findOne({_id:req.params.id});
   let getCheese = await Cheese.findOne({_id:req.params.id});
   let getCafe = await Cafe.findOne({_id:req.params.id});
+
+     res.setHeader('Content-Type', 'application/json');
+  
   if (chicken){
       let chicken   = await Chicken.deleteOne({_id:req.params.id});
       res.redirect('/User');

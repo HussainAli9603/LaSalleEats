@@ -55,10 +55,22 @@ app.get('/', async(req, res) => {
       }else{
         img = rev.image
       }
+      const paragraph = rev.content;
+      const countParagraphTextLength = (paragraph) => {
+      let paragraphLength = 0;
+      for (let character of paragraph) {
+        if (character != '\n') {
+          paragraphLength += 1;
+        }
+      }
+      return paragraphLength;
+     };
+     const paragraphLength = countParagraphTextLength(paragraph);
       
       var cafeData = {
         id:rev._id,
         content:rev.content,
+        paragraphLength:paragraphLength > 400,
         likes:rev.likes,
         dislikes:rev.dislikes,
         username:rev.username,

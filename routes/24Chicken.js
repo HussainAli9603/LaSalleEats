@@ -56,10 +56,23 @@ app.get('/', async (req, res) => {
       }else{
         img = rev.image
       }
+
+      const paragraph = rev.content;
+      const countParagraphTextLength = (paragraph) => {
+      let paragraphLength = 0;
+      for (let character of paragraph) {
+        if (character != '\n') {
+          paragraphLength += 1;
+        }
+      }
+      return paragraphLength;
+     };
+     const paragraphLength = countParagraphTextLength(paragraph);
       
       var chickenData = {
         id:rev.id,
         content:rev.content,
+        paragraphLength:paragraphLength > 400,
         likes:rev.likes,
         dislikes:rev.dislikes,
         username:rev.username,
@@ -88,11 +101,15 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/edit/:id', async (req, res) => {
+  try{
 	let getChicken = await Chicken.findOne({_id:req.params.id});
 	if(getChicken.username != req.session.username){
         res.redirect('/24chicken');		
 	}
     res.render('edit',{getChicken:getChicken});
+  }catch(error){
+    console.log(error)
+  }
 });
 
 

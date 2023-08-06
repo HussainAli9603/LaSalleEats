@@ -14,6 +14,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+<style>
+ a {
+            color: #0254EB
+        }
+        a:visited {
+            color: #0254EB
+        }
+        a.morelink {
+            text-decoration:none;
+            outline: none;
+        }
+        .morecontent span {
+            display: none;
+        }
+        .comment {
+            width: 800px;
+            margin: 10px;
+             text-align: justify;
+
+        }
+        .comment1 {
+            width: 700px;
+            margin: 10px;
+             text-align: justify;
+            
+        }
+</style>
+
 <body>
 
   <script src = "loginscript.js"></script>
@@ -345,14 +373,13 @@
                         {{else}}
                         {{/if}} 
 
-					<p class="mt-3 mb-4 pb-2" style="width:800px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{content}}   
-                        </p>
-                   
-                    <a href="/store/view/{{id}}" style="float: right;margin-top: -35px; white-space:nowrap">
-                            <p>readmore >></p>
-                            <!-- <i class="fa fa-thumbs-up"></i>  -->
-                         </a>
+					
+                        {{#if paragraphLength}}
+                           <div class="comment more"> {{content}}</div>
+                         {{else}}
+                          <div class="comment"> {{content}}</div>
+                         {{/if}}
+            
 
 					<div class="small d-flex justify-content-start">
 						<a href="#!" class="d-flex align-items-center me-3">
@@ -385,13 +412,7 @@
                         {{else}}
                         {{/if}}
                 
-                  <p class="mt-3 mb-4 pb-2" style="width:700px;overflow: hidden;text-overflow: ellipsis;">
-                    {{review}}               
-                  </p>
-                  <a href="/store/views-store/{{review}}" style="float: right;margin-top: -35px; white-space:nowrap">
-                            <p>readmore >></p>
-                            <!-- <i class="fa fa-thumbs-up"></i>  -->
-                         </a>
+                 <div class="comment1 more"> {{review}}</div>
 
                 </div>
               </div>
@@ -436,6 +457,45 @@
 <script src="jquery.min.js"></script>
 <script src="bootstrap.bundle.min.js"></script>
 <script src="nav.js"></script>
+
+
+<script>
+$(document).ready(function() {
+            var showChar = 400;
+            var ellipsestext = "...";
+            var moretext = "More";
+            var lesstext = "Less";
+            $('.more').each(function() {
+                var content = $(this).html();
+
+                if(content.length > showChar) {
+
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar-1, content.length - showChar);
+
+                    var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                    $(this).html(html);
+                }
+
+            });
+
+            $(".morelink").click(function(){
+                if($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                } else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
+        });
+
+
+</script>
 
 </body>
 
