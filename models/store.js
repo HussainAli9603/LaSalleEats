@@ -32,7 +32,7 @@ const storeSchema = new mongoose.Schema({
     reviews:{
         type:Array
     },
-});
+},{ timestamps: true });
 
 const Store = mongoose.model('Store', storeSchema);
 

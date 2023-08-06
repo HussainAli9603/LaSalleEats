@@ -32,7 +32,7 @@ const cafeSchema = new mongoose.Schema({
     reviews:{
         type:Array
     },
-});
+},{ timestamps: true });
 
 const Cafe = mongoose.model('Cafe', cafeSchema);
 

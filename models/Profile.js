@@ -8,19 +8,19 @@ const profileSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    education: {
+    ID: {
         type: String,
         trim: true,
     },
-    college: {
+    course: {
         type: String,
         trim: true,
     },
-    profession: {
+    bio: {
         type: String,
         trim: true,
     }
-});
+},{ timestamps: true });
 
 const Profile = mongoose.model('Profile', profileSchema);
 

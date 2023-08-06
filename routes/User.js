@@ -17,10 +17,10 @@ app.get('/', async (req, res) => {
       return res.redirect('/login'); // Replace '/login' with your actual login route
     }
       let profile = await Profile.findOne({username:req.session.username });
-      let chicken = await Chicken.find({username:req.session.username });
-      let store = await Store.find({username:req.session.username });
-      let cheese = await Cheese.find({username:req.session.username });
-      let cafe = await Cafe.find({username:req.session.username });
+      let chicken = await Chicken.find({username:req.session.username }).sort('-createdAt');
+      let store = await Store.find({username:req.session.username }).sort('-createdAt');
+      let cheese = await Cheese.find({username:req.session.username }).sort('-createdAt');
+      let cafe = await Cafe.find({username:req.session.username }).sort('-createdAt');
 
       var pushData = [];
 
@@ -264,16 +264,24 @@ app.get('/', async (req, res) => {
 
      var pushData1 = pushData.slice(0, 3);
      var pushData2 = pushData.slice(3, 10);
-     // console.log(pushData1)
+     
+     const allPost = [];
+     pushData.forEach((rev) => {
+        if (rev.reviewss.length != 0) {
+          allPost.push(rev)
+        }
+     })
 
       if(profile){
         // Render the User page and pass the username to it
         res.render('User', {
           user: username, 
           profile:profile,
+          chicken11:pushData,
           chicken:pushData1,
           chicken2:pushData2,
           chickenLikes:allLikes,
+          comment:allPost,
           commentlength:commentlength
         });      
       }
@@ -292,7 +300,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/edit/user-profile',async(req, res) => {
-  const { education, college, profession } = req.body;
+  const { ID, course, bio } = req.body;
 
       if (!req.session.username) {
        res.render('/', {user: req.session.username});    
@@ -326,13 +334,14 @@ app.post('/edit/user-profile',async(req, res) => {
 
         const newProfile = new Profile({
           username   :    req.session.username,
-          education  :    req.body.education,
-          college    :    req.body.college,
-          profession :    req.body.profession,
+          ID         :    req.body.ID,
+          course     :    req.body.course,
+          bio        :    req.body.bio,
           image      :    imagePath,
         });
 
         newProfile.save().then(profile =>{
+          console.log("profile111111",profile)
           res.redirect('/User');
  
     });
@@ -340,10 +349,11 @@ app.post('/edit/user-profile',async(req, res) => {
          res.setHeader('Content-Type', 'application/json');
 
           profile.username   =    req.session.username;
-          profile.education  =    education;
-          profile.college    =    college;
-          profile.profession =    profession;
+          profile.ID         =    ID;
+          profile.course     =    course;
+          profile.bio        =    bio;
           profile.image      =    imagePath;
+          console.log("profile222222",profile)
 
           profile.save().then(profile =>{
              res.redirect('/User');
@@ -784,7 +794,7 @@ app.get('/delete/:id', async (req, res) => {
   let getCafe = await Cafe.findOne({_id:req.params.id});
 
      res.setHeader('Content-Type', 'application/json');
-  
+
   if (chicken){
       let chicken   = await Chicken.deleteOne({_id:req.params.id});
       res.redirect('/User');

@@ -201,9 +201,9 @@
 			      <form action="/User/edit/user-profile" method="post" enctype="multipart/form-data">
 			      <div class="modal-body">
 			        <input type="text" class="form-control" value="{{user}}"  name="username" style="background: #fff;" placeholder="username here..."><br>
-			        <input type="text" class="form-control" value="{{profile.education}}"  name="education" style="background: #fff;" placeholder="education here..."><br>
-			        <input type="text" class="form-control" value="{{profile.college}}"  name="college" style="background: #fff;" placeholder="college here..."><br>
-			        <input type="text" class="form-control" value="{{profile.profession}}"  name="profession" style="background: #fff;" placeholder="profession here..."><br>
+			        <input type="text" class="form-control" value="{{profile.ID}}"   name="ID" style="background: #fff;" placeholder="ID here..."><br>
+			        <input type="text" class="form-control" value="{{profile.course}}"  name="course" style="background: #fff;" placeholder="Course here..."><br>
+			        <input type="text" class="form-control" value="{{profile.bio}}"  name="bio" style="background: #fff;" placeholder="Bio here..."><br>
 
 			        <input type="file" class="form-control"  name="image" style="background: #fff;" placeholder="Reply here...">
 			      </div>
@@ -264,13 +264,13 @@
                   {{user}}
                 </h3>
                 <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>{{profile.education}}
+                  <i class="ni business_briefcase-24 mr-2"></i>{{profile.ID}}
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i>{{profile.college}}
+                  <i class="ni education_hat mr-2"></i>{{profile.course}}
                 </div>
                 <hr class="my-4">
-                <p>{{profile.profession}}</p>
+                <p>{{profile.bio}}</p>
               </div>
             </div>
           </div>
@@ -507,7 +507,7 @@
     <div class="card-body tabcontent" id = "showcomment">
         
         <div class = "thread">
-        {{#each chicken}}
+        {{#each comment}}
 
           <div class = "header_post" style ="display:flex; flex-direction:row">
             {{#if profile.image}}

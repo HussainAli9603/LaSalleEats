@@ -32,7 +32,7 @@ const chickenSchema = new mongoose.Schema({
     reviews:{
         type:Array
     },
-});
+},{ timestamps: true });
 
 const Chicken = mongoose.model('24Chicken', chickenSchema);
 

@@ -32,7 +32,7 @@ const cheeseSchema = new mongoose.Schema({
     reviews:{
         type:Array
     },
-});
+},{ timestamps: true });
 
 const Cheese = mongoose.model('Cheese', cheeseSchema);
 
